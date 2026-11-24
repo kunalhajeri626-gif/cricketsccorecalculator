@@ -31,6 +31,12 @@ def required_run_rate(target, current_runs, overs_left):
     return round(needed * 6 / balls_left, 2)
 
 
+def match_status(target, current_runs):
+    if current_runs >= target:
+        return "Target achieved - chasing team wins"
+    return f"Need {int(target - current_runs)} more runs to win"
+
+
 def main(argv):
     if len(argv) != 7:
         print("Usage: python cricket_score.py runs overs bat_runs balls target overs_left")
@@ -43,6 +49,7 @@ def main(argv):
     print(f"Strike rate       : {strike_rate(bat_runs, int(balls))}")
     print(f"Target            : {int(target)} ({overs_left} overs left)")
     print(f"Required run rate : {required_run_rate(target, runs, overs_left)}")
+    print(f"Match status      : {match_status(target, runs)}")
     return 0
 
 
